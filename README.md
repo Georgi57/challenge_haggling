@@ -1,3 +1,5 @@
+Shall play around with the haggling
+
 # <img src=https://hola.org/img/logo.png alt="Hola!"> JS Challenge Summer 2018: Haggling
 
 Welcome to Hola programming challenge!
