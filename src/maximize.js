@@ -29,7 +29,7 @@ module.exports = class Agent {
 		this.opponents_values_descending = []
 		// Fill it with item numbers
 		for (let i = 0; i < this.values.length; i++)
-			this.opponents_values_descending.push(i);
+			this.opponents_values_descending.push(this.values.length);
 		
 		//TODO remove on submitting
 		this.log(`Counts: ${this.counts}`);
@@ -43,7 +43,7 @@ module.exports = class Agent {
         this.log(`${this.rounds} rounds left`);
         this.rounds--;
 		
-		// Decision whether to accept (at least half + 1)
+		
         if (o)
         {
 			// Count the amount you'll get
@@ -51,6 +51,9 @@ module.exports = class Agent {
             for (let i = 0; i<o.length; i++)
                 sum += this.values[i]*o[i];
 			
+			
+			
+			// Decision whether to accept (at least half + 1)
 			// If the sum is at least half plus one - accept
             if (sum>=this.total/2 + 1)
                 return;
@@ -59,7 +62,19 @@ module.exports = class Agent {
 			if (this.rounds == 0 && sum>=this.total/2 - 1)
 				return;
 			
+			
+			
 			// If this is an offer - analyze the opponents offer
+			// First understand, which items opponent is keen of discarding.
+			this.log(`Opponent values: ${this.opponents_values_descending}`);
+			for (let i = 0; i<o.length; i++)
+			{
+				if (o[i] > 0)
+					this.opponents_values_descending[i]--;
+				else
+					this.opponents_values_descending[i]++;
+			}
+			this.log(`Opponent values: ${this.opponents_values_descending}`);
         }
 		
 		// If do no accept - counter offer
