@@ -13,7 +13,7 @@ module.exports = class Agent {
 		
 		
 		// Sort the items by value, only once
-		this.my_values_ascending = []
+		this.my_values_ascending = [];
 		// Fill it with item numbers
 		for (let i = 0; i < this.values.length; i++)
 			this.my_values_ascending.push(i);
@@ -26,23 +26,23 @@ module.exports = class Agent {
 		
 		
 		// Create opponent value prediction list
-		this.opponents_values_prediction = []
+		this.opponents_values_prediction = [];
 		// Fill it with item numbers
 		for (let i = 0; i < this.values.length; i++)
-			this.opponents_values_prediction.push(this.values.length);
+			this.opponents_values_prediction.push(0);
 		
 		// Create opponent value list (has to be sorted every turn according to predictions list)
-		this.opponents_values_descending = []
+		this.opponents_values_descending = [];
 		// Fill it with item numbers
 		for (let i = 0; i < this.values.length; i++)
 			this.opponents_values_descending.push(i);
 		
-		//TODO remove on submitting
+		this.my_offers = [];
+		this.opponents_offers = [];
+		
 		this.log(`Counts: ${this.counts}`);
 		this.log(`My values: ${this.values}`);
 		this.log(this.my_values_ascending);
-		
-		this.last_offer = counts.slice(); // copy of the counts
     }
 	
     offer(o){
@@ -84,10 +84,21 @@ module.exports = class Agent {
 				else
 					this.opponents_values_prediction[i]++;
 			}
-			this.log(`Opponent value prediction: ${this.opponents_values_prediction}`);
+			// ----------------------------------------------
 			
 			
+			
+			// ----------------------------------------------
+			// Save the opponents offer for future reference
+			this.opponents_offers.push([o,sum])
+			this.log(this.opponents_offers);
+			// ----------------------------------------------
         }
+		
+		
+		this.log(this.my_offers);
+		
+		
 		
 		// ----------------------------------------------
 		// Now sort the opponent values
@@ -97,12 +108,21 @@ module.exports = class Agent {
 			return prediction[b] - prediction[a];
 			
 		});
-		this.log(`Opponent values descending: ${this.opponents_values_descending}`);
 		// ----------------------------------------------
 		
-		// If do no accept - counter offer
-        o = this.last_offer; // Take the last offer
 		
+		
+		// ----------------------------------------------
+		// Get my previous offer
+		if (this.my_offers.length == 0)
+			o = this.counts.slice(); // Select everything at first
+		else
+			o = this.my_offers[this.my_offers.length-1][0]; // Take last offer
+		// ----------------------------------------------
+		
+		
+		
+		// ----------------------------------------------
 		// Decrease the least valued item by one
         for (let i = 0; i<o.length; i++)
         {
@@ -113,6 +133,21 @@ module.exports = class Agent {
 				break;
 			}
         }
+		// ----------------------------------------------
+		
+		
+		
+		// ----------------------------------------------
+		// Count the current offer value
+		let sum = 0;
+		for (let i = 0; i<o.length; i++)
+			sum += this.values[i]*o[i];
+		// ----------------------------------------------
+			
+			
+			
+		
+		this.my_offers.push([o,sum])
         return o;
     }
 };
