@@ -139,15 +139,15 @@ module.exports = class Agent {
 		
 		// ----------------------------------------------
 		// Count the current offer value
-		let sum = 0;
+		let my_offer_sum = 0;
 		for (let i = 0; i<o.length; i++)
-			sum += this.values[i]*o[i];
+			my_offer_sum += this.values[i]*o[i];
 		// ----------------------------------------------
 			
 			
 			
 		
-		this.my_offers.push([o,sum])
+		this.my_offers.push([o.slice(),my_offer_sum])
         return o;
     }
 };
