@@ -25,11 +25,17 @@ module.exports = class Agent {
 		});
 		
 		
-		// Create opponent value list
+		// Create opponent value prediction list
+		this.opponents_values_prediction = []
+		// Fill it with item numbers
+		for (let i = 0; i < this.values.length; i++)
+			this.opponents_values_prediction.push(this.values.length);
+		
+		// Create opponent value list (has to be sorted every turn according to predictions list)
 		this.opponents_values_descending = []
 		// Fill it with item numbers
 		for (let i = 0; i < this.values.length; i++)
-			this.opponents_values_descending.push(this.values.length);
+			this.opponents_values_descending.push(i);
 		
 		//TODO remove on submitting
 		this.log(`Counts: ${this.counts}`);
@@ -46,13 +52,16 @@ module.exports = class Agent {
 		
         if (o)
         {
-			// Count the amount you'll get
+			// ----------------------------------------------
+			// Count the amount you'll get if opponents offer accepted
             let sum = 0;
             for (let i = 0; i<o.length; i++)
                 sum += this.values[i]*o[i];
+			// ----------------------------------------------
 			
 			
 			
+			// ----------------------------------------------
 			// Decision whether to accept (at least half + 1)
 			// If the sum is at least half plus one - accept
             if (sum>=this.total/2 + 1)
@@ -61,21 +70,35 @@ module.exports = class Agent {
 			// In the last round can content with half minus one
 			if (this.rounds == 0 && sum>=this.total/2 - 1)
 				return;
+			//-----------------------------------------------
 			
 			
 			
+			// ----------------------------------------------
 			// If this is an offer - analyze the opponents offer
 			// First understand, which items opponent is keen of discarding.
-			this.log(`Opponent values: ${this.opponents_values_descending}`);
 			for (let i = 0; i<o.length; i++)
 			{
 				if (o[i] > 0)
-					this.opponents_values_descending[i]--;
+					this.opponents_values_prediction[i]--;
 				else
-					this.opponents_values_descending[i]++;
+					this.opponents_values_prediction[i]++;
 			}
-			this.log(`Opponent values: ${this.opponents_values_descending}`);
+			this.log(`Opponent value prediction: ${this.opponents_values_prediction}`);
+			
+			
         }
+		
+		// ----------------------------------------------
+		// Now sort the opponent values
+		let prediction = this.opponents_values_prediction;
+		this.opponents_values_descending.sort(function(a,b)
+		{
+			return prediction[b] - prediction[a];
+			
+		});
+		this.log(`Opponent values descending: ${this.opponents_values_descending}`);
+		// ----------------------------------------------
 		
 		// If do no accept - counter offer
         o = this.last_offer; // Take the last offer
