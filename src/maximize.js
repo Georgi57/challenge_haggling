@@ -134,26 +134,33 @@ module.exports = class Agent {
 		
 		// ----------------------------------------------
 		// Iterate my offer
-		// Decrease the least valued item by one
-        for (let i = 0; i<o.length; i++)
-        {
-            if (o[this.my_values_ascending[i]] != 0)
+		for (let iterations = 0; iterations<10; iterations++)
+		{
+			// Decrease the least valued item by one
+			for (let i = 0; i<o.length; i++)
 			{
-                o[this.my_values_ascending[i]]--;
-				this.log(`Offer: ${o}`);
-				break;
+				if (o[this.my_values_ascending[i]] != 0)
+				{
+					o[this.my_values_ascending[i]]--;
+					this.log(`Offer: ${o}`);
+					break;
+				}
 			}
-        }
-		// ----------------------------------------------
-		
-		
-		
-		// ----------------------------------------------
-		// Count the current offer value
-		let my_offer_sum = 0;
-		for (let i = 0; i<o.length; i++)
-			my_offer_sum += this.values[i]*o[i];
-		// ----------------------------------------------
+			// ----------------------------------------------
+			
+			
+			
+			// ----------------------------------------------
+			// Count the current offer value
+			let my_offer_sum = 0;
+			for (let i = 0; i<o.length; i++)
+				my_offer_sum += this.values[i]*o[i];
+			// ----------------------------------------------
+			
+			// Check the value
+			if (my_offer_sum>=this.total/2 + 1)
+				break;
+		}
 			
 			
 			
