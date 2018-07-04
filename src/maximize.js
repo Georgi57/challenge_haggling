@@ -115,7 +115,17 @@ module.exports = class Agent {
 		// ----------------------------------------------
 		// Get my previous offer
 		if (this.my_offers.length == 0)
+		{
 			o = this.counts.slice(); // Select everything at first
+			// Get rid of useless items
+			for (let i = 0; i<o.length; i++)
+			{
+				if (this.values[i] == 0)
+				{
+					o[i] = 0;
+				}
+			}
+		}
 		else
 			o = this.my_offers[this.my_offers.length-1][0]; // Take last offer
 		// ----------------------------------------------
@@ -123,6 +133,7 @@ module.exports = class Agent {
 		
 		
 		// ----------------------------------------------
+		// Iterate my offer
 		// Decrease the least valued item by one
         for (let i = 0; i<o.length; i++)
         {
