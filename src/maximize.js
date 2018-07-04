@@ -139,7 +139,7 @@ module.exports = class Agent {
 			// ----------------------------------------------
 			
 			// Check the value
-			if ((my_offer_sum>=this.total/2 + 1) && (!this.my_offers.includes([o, my_offer_sum])))
+			if ((my_offer_sum>=this.total/2 + 1) && !(this.offered_before(o)))
 				break;
 			else
 				o = this.perfect_offer;
@@ -161,8 +161,8 @@ module.exports = class Agent {
 			
 			
 			
-		
-		this.my_offers.push([o.slice(),this.gain(0)])
+		this.log(`Offer: ${o} ${this.gain(o)}`);
+		this.my_offers.push([o.slice(),this.gain(o)])
         return o;
     }
 	
@@ -173,5 +173,25 @@ module.exports = class Agent {
 		for (let i = 0; i<offer.length; i++)
 			sum += this.values[i]*offer[i];
 		return sum;
+	}
+	
+	// Check if this offer was made before
+	offered_before(o)
+	{
+		for (let i = 0; i<this.my_offers.length; i++)
+		{
+			let same = true
+			for (let j = 0; j<this.my_offers[i][0].length; j++)
+			{
+				if (this.my_offers[i][0][j] != o[j])
+				{
+					same = false;
+					break;
+				}
+			}
+			if (same)
+				return true;
+		}
+		return false;
 	}
 };
