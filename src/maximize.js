@@ -11,6 +11,8 @@ module.exports = class Agent {
         for (let i = 0; i<counts.length; i++)
             this.total += counts[i]*values[i];
 		
+		this.best_current_offer = []
+		this.best_current_sum = 0;
 		
 		// Sort the items by value, only once
 		this.my_values_ascending = [];
@@ -145,18 +147,9 @@ module.exports = class Agent {
 				o = this.perfect_offer;
 			
 			
-			
-			// Decrease the least valued item by one
-			for (let i = 0; i<o.length; i++)
-			{
-				if (o[this.my_values_ascending[i]] != 0)
-				{
-					o[this.my_values_ascending[i]]--;
-					this.log(`Offer: ${o} ${this.gain(o)}`);
-					break;
-				}
-			}
-			// ----------------------------------------------
+			this.best_current_sum = 0;
+			this.search_offer_tree(o.slice());
+			o = this.best_current_offer;
 		}
 			
 			
@@ -173,6 +166,26 @@ module.exports = class Agent {
 		for (let i = 0; i<offer.length; i++)
 			sum += this.values[i]*offer[i];
 		return sum;
+	}
+	
+	// Find best offer using a tree
+	search_offer_tree(offer)
+	{
+		for (let i = 0; i<offer.length; i++)
+		{
+			
+			let sum = this.gain(offer)
+			if ((sum > this.best_current_sum) && !(this.offered_before(offer)))
+			{
+				this.best_current_offer = offer.slice();
+				this.best_current_sum = sum;
+			}
+			if (offer[i]!=0)
+			{
+				offer[i]-=1;
+				this.search_offer_tree(offer);
+			}
+		}
 	}
 	
 	// Check if this offer was made before
