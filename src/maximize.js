@@ -171,10 +171,15 @@ module.exports = class Agent {
 	// Find best offer using a tree
 	search_offer_tree(offer)
 	{
+		if (offer.every(this.isZero))
+			return;
+		
 		for (let i = 0; i<offer.length; i++)
 		{
-			
+			if (offer[i]==0)
+				continue
 			let sum = this.gain(offer)
+			this.log(`Search: ${offer} ${sum}`);
 			if ((sum > this.best_current_sum) && !(this.offered_before(offer)))
 			{
 				this.best_current_offer = offer.slice();
@@ -182,8 +187,9 @@ module.exports = class Agent {
 			}
 			if (offer[i]!=0)
 			{
-				offer[i]-=1;
-				this.search_offer_tree(offer);
+				let new_offer = offer.slice()
+				new_offer[i]-=1
+				this.search_offer_tree(new_offer);
 			}
 		}
 	}
@@ -206,5 +212,9 @@ module.exports = class Agent {
 				return true;
 		}
 		return false;
+	}
+	
+	isZero(variable) {
+		return variable == 0;
 	}
 };
