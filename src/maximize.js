@@ -16,7 +16,8 @@ module.exports = class Agent {
 		this.my_values_ascending = [];
 		// Fill it with item numbers
 		for (let i = 0; i < this.values.length; i++)
-			this.my_values_ascending.push(i);
+			if (this.values[i]!=0)
+				this.my_values_ascending.push(i);
 		// Sort my values
 		this.my_values_ascending.sort(function(a,b)
 		{
@@ -35,13 +36,16 @@ module.exports = class Agent {
 		this.opponents_values_descending = [];
 		// Fill it with item numbers
 		for (let i = 0; i < this.values.length; i++)
-			this.opponents_values_descending.push(i);
+			if (this.values[i]!=0)
+				this.opponents_values_descending.push(i);
 		
+		this.perfect_offer = [];
 		this.my_offers = [];
 		this.opponents_offers = [];
 		
 		this.log(`Counts: ${this.counts}`);
 		this.log(`My values: ${this.values}`);
+		this.log(`Opponent values: ${this.opponents_values_descending}`);
 		this.log(this.my_values_ascending);
     }
 	
@@ -125,17 +129,32 @@ module.exports = class Agent {
 					o[i] = 0;
 				}
 			}
+			this.perfect_offer = o;
 		}
 		else
 			o = this.my_offers[this.my_offers.length-1][0]; // Take last offer
 		// ----------------------------------------------
 		
 		
-		
+		let my_offer_sum = 0;
 		// ----------------------------------------------
 		// Iterate my offer
 		for (let iterations = 0; iterations<10; iterations++)
 		{
+			// ----------------------------------------------
+			// Count the current offer value
+			for (let i = 0; i<o.length; i++)
+				my_offer_sum += this.values[i]*o[i];
+			// ----------------------------------------------
+			
+			// Check the value
+			if ((my_offer_sum>=this.total/2 + 1) && (!this.my_offers.includes([o, my_offer_sum])))
+				break;
+			else
+				o = this.perfect_offer;
+			
+			
+			
 			// Decrease the least valued item by one
 			for (let i = 0; i<o.length; i++)
 			{
@@ -147,19 +166,6 @@ module.exports = class Agent {
 				}
 			}
 			// ----------------------------------------------
-			
-			
-			
-			// ----------------------------------------------
-			// Count the current offer value
-			let my_offer_sum = 0;
-			for (let i = 0; i<o.length; i++)
-				my_offer_sum += this.values[i]*o[i];
-			// ----------------------------------------------
-			
-			// Check the value
-			if (my_offer_sum>=this.total/2 + 1)
-				break;
 		}
 			
 			
