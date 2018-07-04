@@ -45,8 +45,6 @@ module.exports = class Agent {
 		
 		this.log(`Counts: ${this.counts}`);
 		this.log(`My values: ${this.values}`);
-		this.log(`Opponent values: ${this.opponents_values_descending}`);
-		this.log(this.my_values_ascending);
     }
 	
     offer(o){
@@ -58,9 +56,7 @@ module.exports = class Agent {
         {
 			// ----------------------------------------------
 			// Count the amount you'll get if opponents offer accepted
-            let sum = 0;
-            for (let i = 0; i<o.length; i++)
-                sum += this.values[i]*o[i];
+            let sum = this.gain(o);
 			// ----------------------------------------------
 			
 			
@@ -95,12 +91,8 @@ module.exports = class Agent {
 			// ----------------------------------------------
 			// Save the opponents offer for future reference
 			this.opponents_offers.push([o,sum])
-			this.log(this.opponents_offers);
 			// ----------------------------------------------
         }
-		
-		
-		this.log(this.my_offers);
 		
 		
 		
@@ -136,15 +128,14 @@ module.exports = class Agent {
 		// ----------------------------------------------
 		
 		
-		let my_offer_sum = 0;
+		
 		// ----------------------------------------------
 		// Iterate my offer
 		for (let iterations = 0; iterations<10; iterations++)
 		{
 			// ----------------------------------------------
 			// Count the current offer value
-			for (let i = 0; i<o.length; i++)
-				my_offer_sum += this.values[i]*o[i];
+			let my_offer_sum = this.gain(o)
 			// ----------------------------------------------
 			
 			// Check the value
@@ -161,7 +152,7 @@ module.exports = class Agent {
 				if (o[this.my_values_ascending[i]] != 0)
 				{
 					o[this.my_values_ascending[i]]--;
-					this.log(`Offer: ${o}`);
+					this.log(`Offer: ${o} ${this.gain(o)}`);
 					break;
 				}
 			}
@@ -171,7 +162,16 @@ module.exports = class Agent {
 			
 			
 		
-		this.my_offers.push([o.slice(),my_offer_sum])
+		this.my_offers.push([o.slice(),this.gain(0)])
         return o;
     }
+	
+	// Calculate gain of the offer
+	gain(offer)
+	{
+		let sum = 0;
+		for (let i = 0; i<offer.length; i++)
+			sum += this.values[i]*offer[i];
+		return sum;
+	}
 };
