@@ -66,11 +66,11 @@ module.exports = class Agent {
 			// ----------------------------------------------
 			// Decision whether to accept (at least half + 1)
 			// If the sum is at least half plus one - accept
-            if (sum>=this.total/2 + 1)
+            if (sum>=this.total/2 + 2)
                 return;
 			
 			// In the last round can content with half minus one
-			if (this.rounds == 0 && sum>=this.total/2 - 1)
+			if (this.rounds == 0 && sum>=this.total/2)
 				return;
 			//-----------------------------------------------
 			
@@ -135,21 +135,15 @@ module.exports = class Agent {
 		// Iterate my offer
 		for (let iterations = 0; iterations<10; iterations++)
 		{
-			// ----------------------------------------------
-			// Count the current offer value
-			let my_offer_sum = this.gain(o)
-			// ----------------------------------------------
-			
-			// Check the value
-			if ((my_offer_sum>=this.total/2 + 1) && !(this.offered_before(o)))
-				break;
-			else
-				o = this.perfect_offer;
-			
-			
 			this.best_current_sum = 0;
 			this.search_offer_tree(o.slice());
-			o = this.best_current_offer;
+			
+			// Check the value
+			if ((this.gain(this.best_current_offer)>=this.total/2 + 2)
+				&& !(this.offered_before(this.best_current_offer)))
+				o = this.best_current_offer;
+			else
+				o = this.perfect_offer;
 		}
 			
 			
@@ -179,7 +173,6 @@ module.exports = class Agent {
 			if (offer[i]==0)
 				continue
 			let sum = this.gain(offer)
-			this.log(`Search: ${offer} ${sum}`);
 			if ((sum > this.best_current_sum) && !(this.offered_before(offer)))
 			{
 				this.best_current_offer = offer.slice();
