@@ -11,6 +11,9 @@ module.exports = class Agent {
         for (let i = 0; i<counts.length; i++)
             this.total += counts[i]*values[i];
 		
+		this.acceptance_value = this.total/2 + 2;
+		this.minimal_acceptance_value = this.total/2;
+		
 		this.best_current_offer = []
 		this.best_current_sum = 0;
 		
@@ -66,11 +69,11 @@ module.exports = class Agent {
 			// ----------------------------------------------
 			// Decision whether to accept (at least half + 1)
 			// If the sum is at least half plus one - accept
-            if (sum>=this.total/2 + 2)
+            if (sum>=this.acceptance_value)
                 return;
 			
 			// In the last round can content with half minus one
-			if (this.rounds == 0 && sum>=this.total/2)
+			if (this.rounds == 0 && sum>=this.minimal_acceptance_value)
 				return;
 			//-----------------------------------------------
 			
@@ -126,24 +129,46 @@ module.exports = class Agent {
 			this.perfect_offer = o;
 		}
 		else
-			o = this.my_offers[this.my_offers.length-1][0]; // Take last offer
+			o = this.perfect_offer; // Take a perfect offer
 		// ----------------------------------------------
 		
 		
 		
 		// ----------------------------------------------
-		// Iterate my offer
-		for (let iterations = 0; iterations<10; iterations++)
+		if (this.rounds > 0)
 		{
-			this.best_current_sum = 0;
-			this.search_offer_tree(o.slice());
-			
-			// Check the value
-			if ((this.gain(this.best_current_offer)>=this.total/2 + 2)
-				&& !(this.offered_before(this.best_current_offer)))
-				o = this.best_current_offer;
-			else
-				o = this.perfect_offer;
+			// Iterate my offer
+			for (let iterations = 0; iterations<10; iterations++)
+			{
+				this.best_current_sum = 0;
+				this.search_offer_tree(o.slice());
+				
+				// Check the value
+				if ((this.gain(this.best_current_offer)>=this.acceptance_value)
+					&& !(this.offered_before(this.best_current_offer)))
+				{
+					o = this.best_current_offer;
+					break;
+				}
+				else
+				{
+					o = this.perfect_offer;
+					if (this.acceptance_value > this.minimal_acceptance_value)
+						this.acceptance_value-=1;
+					break;
+				}
+			}
+		}
+		else
+		{
+			// Find the best of the opponents offers
+			let sum = 0;
+			for (let i = 0; i<this.opponents_offers.length; i++)
+			{
+				this.log(`opponents offers: ${this.opponents_offers[i]}`);
+				if (this.opponents_offers[i][1] >= sum && this.opponents_offers[i][1] >= this.minimal_acceptance_value)
+					o = this.opponents_offers[i][0];
+			}
 		}
 			
 			
