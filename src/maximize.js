@@ -11,8 +11,9 @@ module.exports = class Agent {
         for (let i = 0; i<counts.length; i++)
             this.total += counts[i]*values[i];
 		
-		this.acceptance_value = this.total/2 + 2;
+		this.acceptance_value = this.total/2 + 3;
 		this.minimal_acceptance_value = this.total/2;
+		this.last_chance_acceptance_value = this.total/2-1;
 		
 		this.best_current_offer = []
 		this.best_current_sum = 0;
@@ -73,7 +74,7 @@ module.exports = class Agent {
                 return;
 			
 			// In the last round can content with half minus one
-			if (this.rounds == 0 && sum>=this.minimal_acceptance_value)
+			if (this.rounds == 0 && sum>=this.last_chance_acceptance_value)
 				return;
 			//-----------------------------------------------
 			
@@ -166,7 +167,7 @@ module.exports = class Agent {
 			for (let i = 0; i<this.opponents_offers.length; i++)
 			{
 				this.log(`opponents offers: ${this.opponents_offers[i]}`);
-				if (this.opponents_offers[i][1] >= sum && this.opponents_offers[i][1] >= this.minimal_acceptance_value)
+				if (this.opponents_offers[i][1] >= sum && this.opponents_offers[i][1] >= this.last_chance_acceptance_value)
 					o = this.opponents_offers[i][0];
 			}
 		}
