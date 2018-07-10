@@ -13,7 +13,7 @@ module.exports = class Agent {
 		
 		this.acceptance_value = this.total/2 + 3;
 		this.minimal_acceptance_value = this.total/2;
-		this.last_chance_acceptance_value = this.total/2-1;
+		this.last_chance_acceptance_value = this.total/2 - 2;
 		
 		this.best_current_offer = []
 		this.best_current_sum = 0;
@@ -156,7 +156,7 @@ module.exports = class Agent {
 					o = this.perfect_offer;
 					if (this.acceptance_value > this.minimal_acceptance_value)
 						this.acceptance_value-=1;
-					break;
+					//break;
 				}
 			}
 		}
