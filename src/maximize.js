@@ -3,6 +3,7 @@
 module.exports = class Agent {
 	
     constructor(me, counts, values, max_rounds, log){
+		this.opponent_started = me;
         this.counts = counts;
         this.values = values;
         this.rounds = max_rounds;
@@ -74,7 +75,7 @@ module.exports = class Agent {
                 return;
 			
 			// In the last round can content with half minus one
-			if (this.rounds == 0 && sum>=this.last_chance_acceptance_value)
+			if (this.rounds == 0 && sum>=this.last_chance_acceptance_value && this.opponent_started)
 				return;
 			//-----------------------------------------------
 			
@@ -156,11 +157,11 @@ module.exports = class Agent {
 					o = this.perfect_offer;
 					if (this.acceptance_value > this.minimal_acceptance_value)
 						this.acceptance_value-=1;
-					//break;
 				}
 			}
 		}
-		else
+		
+		if (this.rounds == 0 || (this.rounds == 1 && this.opponent_started))
 		{
 			// Find the best of the opponents offers
 			let sum = 0;
@@ -169,6 +170,7 @@ module.exports = class Agent {
 				this.log(`opponents offers: ${this.opponents_offers[i]}`);
 				if (this.opponents_offers[i][1] >= sum && this.opponents_offers[i][1] >= this.last_chance_acceptance_value)
 					o = this.opponents_offers[i][0];
+					sum = this.opponents_offers[i][1];
 			}
 		}
 			
