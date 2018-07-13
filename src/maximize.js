@@ -13,7 +13,7 @@ module.exports = class Agent {
             this.total += counts[i]*values[i];
 		
 		this.acceptance_value = this.total/2 + 2;
-		this.minimal_acceptance_value = this.total/2 - 1;
+		this.minimal_acceptance_value = this.total/2;
 		this.last_chance_acceptance_value = this.total/2 - 4;
 		
 		this.best_current_offer = []
@@ -156,8 +156,8 @@ module.exports = class Agent {
 			
 			
 			
-		this.log(`Offer: ${o} ${this.gain(o)}`);
-		this.my_offers.push([o.slice(),this.gain(o)])
+		this.log(`Offer: ${o} ${this.gain(o)} ${this.opponent_gain(o)}`);
+		this.my_offers.push([o.slice(),this.gain(o),this.opponent_gain(o)])
         return o;
     }
 	
@@ -173,16 +173,24 @@ module.exports = class Agent {
 	// Find best offer using a tree
 	search_offer_tree(offer)
 	{
+		// Check that this is not a zero count
 		if (offer.every(this.isZero))
 			return;
 		
-		let sum = this.gain(offer)
-		if ((sum > this.best_current_sum) && !(this.offered_before(offer)))
+		
+		// Calculate gain
+		let sum = this.gain(offer);
+		let opponent_sum = this.opponent_gain(offer);
+
+	
+		// Now check whether this offer is suitable
+		if ((sum + opponent_sum > this.best_current_sum) && !(this.offered_before(offer)))
 		{
 			this.best_current_offer = offer.slice();
-			this.best_current_sum = sum;
+			this.best_current_sum = sum + opponent_sum;
 		}
 		
+		// Check offers with even less items as well
 		for (let i = 0; i<offer.length; i++)
 		{
 			if (offer[i]==0)
@@ -218,5 +226,12 @@ module.exports = class Agent {
 	
 	isZero(variable) {
 		return variable == 0;
+	}
+	
+	opponent_gain(offer) {
+		let sum = 0;
+		for (let i = 0; i<offer.length; i++)
+			sum += this.opponents_values_prediction[i]*offer[i];
+		return sum;
 	}
 };
