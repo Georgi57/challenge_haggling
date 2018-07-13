@@ -39,13 +39,6 @@ module.exports = class Agent {
 		for (let i = 0; i < this.values.length; i++)
 			this.opponents_values_prediction.push(0);
 		
-		// Create opponent value list (has to be sorted every turn according to predictions list)
-		this.opponents_values_descending = [];
-		// Fill it with item numbers
-		for (let i = 0; i < this.values.length; i++)
-			if (this.values[i]!=0)
-				this.opponents_values_descending.push(i);
-		
 		this.perfect_offer = [];
 		this.my_offers = [];
 		this.opponents_offers = [];
@@ -87,10 +80,9 @@ module.exports = class Agent {
 			for (let i = 0; i<o.length; i++)
 			{
 				if (o[i] > 0)
-					this.opponents_values_prediction[i]--;
-				else
-					this.opponents_values_prediction[i]++;
+					this.opponents_values_prediction[i] ++;
 			}
+			this.log(`Opponents least valued items: ${this.opponents_values_prediction}`);
 			// ----------------------------------------------
 			
 			
@@ -100,18 +92,6 @@ module.exports = class Agent {
 			this.opponents_offers.push([o,sum])
 			// ----------------------------------------------
         }
-		
-		
-		
-		// ----------------------------------------------
-		// Now sort the opponent values
-		let prediction = this.opponents_values_prediction;
-		this.opponents_values_descending.sort(function(a,b)
-		{
-			return prediction[b] - prediction[a];
-			
-		});
-		// ----------------------------------------------
 		
 		
 		
