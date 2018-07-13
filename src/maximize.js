@@ -109,6 +109,20 @@ module.exports = class Agent {
 				}
 			}
 			this.perfect_offer = o;
+			
+			// If the perfect offer is the same as the count, add it to the offerred list to skip it.
+			// No real point of offering it.
+			let same = 1;
+			for (let i = 0; i<this.perfect_offer.length; i++)
+			{
+				if (this.perfect_offer[i] != this.counts[i])
+				{
+					same = 0;
+					break;
+				}
+			}
+			if (same == 1)
+				this.my_offers.push([this.perfect_offer.slice(),this.gain(this.perfect_offer),this.opponent_gain(this.perfect_offer)])
 		}
 		else
 			o = this.perfect_offer; // Take a perfect offer
