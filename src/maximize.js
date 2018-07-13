@@ -176,17 +176,18 @@ module.exports = class Agent {
 		if (offer.every(this.isZero))
 			return;
 		
+		let sum = this.gain(offer)
+		if ((sum > this.best_current_sum) && !(this.offered_before(offer)))
+		{
+			this.best_current_offer = offer.slice();
+			this.best_current_sum = sum;
+		}
+		
 		for (let i = 0; i<offer.length; i++)
 		{
 			if (offer[i]==0)
 				continue
-			let sum = this.gain(offer)
-			if ((sum > this.best_current_sum) && !(this.offered_before(offer)))
-			{
-				this.best_current_offer = offer.slice();
-				this.best_current_sum = sum;
-			}
-			if (offer[i]!=0)
+			else
 			{
 				let new_offer = offer.slice()
 				new_offer[i]-=1
