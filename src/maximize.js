@@ -12,7 +12,7 @@ module.exports = class Agent {
         for (let i = 0; i<counts.length; i++)
             this.total += counts[i]*values[i];
 		
-		this.acceptance_value = this.total/2 + 2;
+		this.acceptance_value = this.total/2 + 3;
 		this.minimal_acceptance_value = this.total/2;
 		this.last_chance_acceptance_value = this.total/2 - 4;
 		
@@ -163,8 +163,10 @@ module.exports = class Agent {
 			{
 				this.log(`opponents offers: ${this.opponents_offers[i]}`);
 				if (this.opponents_offers[i][1] >= sum && this.opponents_offers[i][1] >= this.last_chance_acceptance_value)
+				{
 					o = this.opponents_offers[i][0];
 					sum = this.opponents_offers[i][1];
+				}
 			}
 		}
 			
