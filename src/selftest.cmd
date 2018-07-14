@@ -12,7 +12,7 @@ set seeds=1672628407^
  1086785288^
  1148275517^
  364344693^
-	
+ 226107593
 	
 (for %%a in (%seeds%) do ( 
    node haggle.js --force --seed=%%a maximize.js maximize.js
@@ -31,4 +31,5 @@ set seeds=1672628407^
 :: 1266185634 - 8:6
 :: 1086785288 - both 6
 :: 1148275517 - 7:1 or 3:9
-:: 364344693 - both should get 6
+:: 226107593 - 6:8 or 8:7
+

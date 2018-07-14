@@ -13,7 +13,7 @@ module.exports = class Agent {
             this.total += counts[i]*values[i];
 		
 		this.acceptance_value = this.total/2 + 3;
-		this.minimal_acceptance_value = this.total/2;
+		this.minimal_acceptance_value = this.total/2 - 1;
 		this.last_chance_acceptance_value = this.total/2 - 4;
 		
 		this.best_current_offer = []
@@ -80,7 +80,7 @@ module.exports = class Agent {
 			for (let i = 0; i<o.length; i++)
 			{
 				if (o[i] > 0)
-					this.opponents_values_prediction[i] ++;
+					this.opponents_values_prediction[i] += o[i];
 			}
 			this.log(`Opponents least valued items: ${this.opponents_values_prediction}`);
 			// ----------------------------------------------
@@ -155,7 +155,7 @@ module.exports = class Agent {
 			}
 		}
 		
-		if (this.rounds == 0 || (this.rounds == 1 && this.opponent_started))
+		if (this.rounds == 0)
 		{
 			// Find the best of the opponents offers
 			let sum = 0;
