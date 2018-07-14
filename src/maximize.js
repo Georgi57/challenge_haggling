@@ -148,7 +148,7 @@ module.exports = class Agent {
 				}
 				else
 				{
-					o = this.my_offers[this.my_offers.length-1][0];
+					o = this.perfect_offer;
 					if (this.acceptance_value > this.minimal_acceptance_value + (this.rounds+1)/2)
 						this.acceptance_value-=1;
 				}
