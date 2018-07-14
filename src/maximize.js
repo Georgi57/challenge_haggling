@@ -149,7 +149,7 @@ module.exports = class Agent {
 				else
 				{
 					o = this.perfect_offer;
-					if (this.acceptance_value > this.minimal_acceptance_value + (this.rounds+1)/2)
+					if (this.acceptance_value > this.minimal_acceptance_value + ((this.rounds)/2))
 						this.acceptance_value-=1;
 				}
 			}
@@ -247,7 +247,7 @@ module.exports = class Agent {
 	opponent_gain(offer) {
 		let sum = 0;
 		for (let i = 0; i<offer.length; i++)
-			sum += this.opponents_values_prediction[i]*offer[i];
+			sum += this.opponents_values_prediction[i]*offer[i]*0.6;
 		return sum;
 	}
 };
