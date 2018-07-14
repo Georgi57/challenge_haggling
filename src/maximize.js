@@ -12,7 +12,7 @@ module.exports = class Agent {
         for (let i = 0; i<counts.length; i++)
             this.total += counts[i]*values[i];
 		
-		this.acceptance_value = this.total/2 + 3;
+		this.acceptance_value = this.total/2 + 4;
 		this.minimal_acceptance_value = this.total/2 - 1;
 		this.last_chance_acceptance_value = this.total/2 - 4;
 		
@@ -148,8 +148,8 @@ module.exports = class Agent {
 				}
 				else
 				{
-					o = this.perfect_offer;
-					if (this.acceptance_value > this.minimal_acceptance_value)
+					o = this.my_offers[this.my_offers.length-1][0];
+					if (this.acceptance_value > this.minimal_acceptance_value + (this.rounds+1)/2)
 						this.acceptance_value-=1;
 				}
 			}
