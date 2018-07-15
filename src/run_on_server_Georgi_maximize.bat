@@ -1,1 +1,0 @@
-for /l %%x in (1, 1, 10000) do node haggle.js --force --id=georgi.olentsenko@gmail.com834634235 Georgi_maximize.js wss://hola.org/challenges/haggling/arena/standard
