@@ -22,7 +22,10 @@ if __name__ == '__main__':
 	
 	my_hashes = ["f764dc3127e0e6d1f1c48562262eff97",
 				"d60893281b1f7bd8e83ed0a0a26cf6dd",
-				"220f9602116165ff6140914f902beaa3"]
+				"220f9602116165ff6140914f902beaa3",
+				"1d9174637927cad7285022a029e8be21",
+				"b4e5f0d39a5d51242f13c2e9a327293d",
+				"61c8082ba70a89da82a929632e2a81a2"]
 	
 	print ("My results:")
 	my_ratios = []
@@ -59,13 +62,14 @@ if __name__ == '__main__':
 		score_end = webpage.find(" ", score_start)
 		score = float(webpage[score_start:score_end].replace("\\n",""))
 		
-		best_results.append([score/sessions, sessions])
+		if (sessions>200):
+			best_results.append([score/sessions, sessions])
 		
 		location+=1
 			
 	best_results.sort(reverse=True)
 	
-	for i in range(0,50):
+	for i in range(0,20):
 		print (i, best_results[i])
 		if (best_results[i] in my_ratios):
 			print ("me")

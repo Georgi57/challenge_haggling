@@ -1,0 +1,19 @@
+// Running with random seed
+node haggle.js --force maximize.js maximize.js
+
+// Running with a seed
+node haggle.js --force --seed=77784356 maximize.js maximize.js
+
+// Running with a server
+node haggle.js --force --id=georgi.olentsenko@gmail.com53278892375 maximize.js wss://hola.org/challenges/haggling/arena/standard
+// hash f764dc3127e0e6d1f1c48562262eff97
+node haggle.js --force --id=georgi.olentsenko@gmail.com23509205203 maximize.js wss://hola.org/challenges/haggling/arena/standard
+// hash d60893281b1f7bd8e83ed0a0a26cf6dd
+node haggle.js --force --id=georgi.olentsenko@gmail.com834634235 maximize.js wss://hola.org/challenges/haggling/arena/standard
+// hash 220f9602116165ff6140914f902beaa3
+node haggle.js --force --id=georgi.olentsenko@gmail.com23509259239058 maximize.js wss://hola.org/challenges/haggling/arena/standard
+//hash 1d9174637927cad7285022a029e8be21
+node haggle.js --force --id=georgi.olentsenko@gmail.com235798273957 maximize.js wss://hola.org/challenges/haggling/arena/standard
+// hash 61c8082ba70a89da82a929632e2a81a2
+node haggle.js --force --id=georgi.olentsenko@gmail.com35091835019 maximize.js wss://hola.org/challenges/haggling/arena/standard
+// hash b4e5f0d39a5d51242f13c2e9a327293d
