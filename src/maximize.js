@@ -1,3 +1,73 @@
+/*
+File name: Georgi_maximize_v3.js
+Author: Georgi Olentsenko
+
+Purpose: Haggling competition from Hola
+https://github.com/hola/challenge_haggling
+
+Sometime after submission I will push the this script and development process
+to repositoty: https://github.com/Georgi57/challenge_haggling
+
+***General comments***
+I like contained solutions and test them as much as I can.
+As an embedded engineer I am typically limited in resources so I make simple solutions.
+In this case I did not spend much time on optimization.
+I also never used nodejs in my work before, so this was a good way to get to know it (at least basic functionality).
+
+***Overview***
+The base idea of the solution is to give give value offers (from my side) to the opponent in descreasing order.
+This is done using an offer tree. Tree is based on my value plus opponents perceived valueless items.
+Although opponents value prediction plays a very small role.
+If opponent does not accept my offers, last rounds are used to look through his offers and select the best of those.
+I am not concerned about the value the opponents gets out of the offer, merely statistically increasing my own.
+
+***Process***
+I will describe some step I have take, mostly for my own reflection.
+
+1. towards the tree
+First thing I did was to organize my offers in decreasing value.
+I tried decreasing the offer by the least valued item. This was fine for starters.
+The list of item values in ascending order is still in the code, but not used. At least I understood how sorting works.
+Quickly realized that this would take many offers off the list. I moved on to the tree solution.
+Started testing against myself. The idea was to get the best value offer for both parties.
+
+2. Perfect offer
+I added a definition of a perfect offer - all non-zero items combined. My perfect offer is used to start haggling.
+
+3. Opponents offers
+I started saving opponents offers with a thought of analysis later.
+Next idea I had was to check when the opponent had any good offer at the end of the haggling.
+Done. And pretty useful feature.
+
+4. Acceptance levels
+At this point I added two variables: acceptance and minimal_acceptance.
+The idea was to start with acceptance and going through the offers decrease it until minimal_acceptance is reached.
+Me accepting offers also depends on the acceptance level. So when I offer lower value, I accept lower values as well.
+Next I added the last change acceptance - the value I could accept as last resort.
+In the end there was lots of tweaking these values.
+
+5. First solution
+At this point I decided to fix v1 of the solution, which worked on all fronts,
+Not the best value over time though, some decided to continue development.
+
+6. Opponents offer analysis
+I added opponents value list very early on along with my own value list but have not used it until now.
+Simplified opponents offer values. Initially wanted to decrease and increase the value of the items according to offers.
+Now I just increased the value if an items was in the offer.
+Then I finally added consideration in the tree. A tried to tweak it a lot.
+For that I added a selftest.cmd script to check my tweaks.
+
+7. Optimizations
+Now I started running my solution on the server, checking against other people continuously.
+Fixed v2 solution and created pyhton script to check statistics in a simple way.
+From here on it seems I only did tweaking and optimizations.
+I ran 24h test, comparing the my scripts with other people statistically.
+And decisions on the acceptance level were done based on the statistics.
+
+8. Final testing
+...
+*/
+
 'use strict'; /*jslint node:true*/
 
 module.exports = class Agent {
