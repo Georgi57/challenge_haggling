@@ -12,9 +12,9 @@ module.exports = class Agent {
         for (let i = 0; i<counts.length; i++)
             this.total += counts[i]*values[i];
 		
-		this.acceptance_value = this.total/2 + 4;
-		this.minimal_acceptance_value = this.total/2 - 1;
-		this.last_chance_acceptance_value = this.total/2 - 4;
+		this.acceptance_value = this.total/2 + 5;
+		this.minimal_acceptance_value = this.total/2 + 1;
+		this.last_chance_acceptance_value = this.total/2 - 3;
 		
 		this.best_current_offer = []
 		this.best_current_sum = 0;
