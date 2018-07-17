@@ -39,7 +39,7 @@ if __name__ == '__main__':
 		sessions = float(text_array[-5][18:].replace(",",""))
 		score = float(text_array[-3][15:])
 		print ("\t",sessions, score, "\t\t", score/sessions)
-		my_ratios.append([score/sessions, sessions])
+		my_ratios.append([score/sessions, sessions, score])
 	
 	now = datetime.datetime.now()
 	date = now.strftime("%Y-%m-%d")
@@ -63,7 +63,7 @@ if __name__ == '__main__':
 		score = float(webpage[score_start:score_end].replace("\\n",""))
 		
 		if (sessions>200):
-			best_results.append([score/sessions, sessions])
+			best_results.append([score/sessions, sessions, score])
 		
 		location+=1
 			
