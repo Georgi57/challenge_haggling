@@ -11,12 +11,12 @@ to repositoty: https://github.com/Georgi57/challenge_haggling
 ***General comments***
 I like contained solutions and test them as much as I can.
 As an embedded engineer I am typically limited in resources so I make simple solutions.
-In this case I did not spend much time on optimization.
+In this case I did not spend much time on optimization, just tweaking the parameters.
 I also never used nodejs in my work before, so this was a good way to get to know it (at least basic functionality).
 
 ***Overview***
-The base idea of the solution is to give give value offers (from my side) to the opponent in descreasing order.
-This is done using an offer tree. Tree is based on my value plus opponents perceived valueless items.
+The base idea of the solution is to give best value offers (from my side) to the opponent in descreasing order.
+This is done using an offer tree. Tree is based on value to me plus opponents perceived valueless items.
 Although opponents value prediction plays a very small role.
 If opponent does not accept my offers, last rounds are used to look through his offers and select the best of those.
 I am not concerned about the value the opponents gets out of the offer, merely statistically increasing my own.
@@ -65,6 +65,7 @@ I ran 24h test, comparing the my scripts with other people statistically.
 And decisions on the acceptance level were done based on the statistics.
 
 8. Final testing
+Second test resulted in suprizing results of 8 being the best minimal acceptance level.
 ...
 */
 
@@ -82,10 +83,12 @@ module.exports = class Agent {
         for (let i = 0; i<counts.length; i++)
             this.total += counts[i]*values[i];
 		
+		// Acceptance parametets which were tweaked late in development
 		this.acceptance_value = this.total/2 + 5;
 		this.minimal_acceptance_value = this.total/2 + 1;
 		this.last_chance_acceptance_value = this.total/2 - 3;
 		
+		// Variables for offer tree selection
 		this.best_current_offer = []
 		this.best_current_sum = 0;
 		
@@ -108,11 +111,15 @@ module.exports = class Agent {
 		// Fill it with item numbers
 		for (let i = 0; i < this.values.length; i++)
 			this.opponents_values_prediction.push(0);
-		
+
+		// Best value offer from my side
 		this.perfect_offer = [];
+		
+		// Offer history
 		this.my_offers = [];
 		this.opponents_offers = [];
-		
+
+		// More easily readable to me via plane numbers
 		this.log(`Counts: ${this.counts}`);
 		this.log(`My values: ${this.values}`);
     }
@@ -132,12 +139,11 @@ module.exports = class Agent {
 			
 			
 			// ----------------------------------------------
-			// Decision whether to accept (at least half + 1)
-			// If the sum is at least half plus one - accept
+			// Decision whether to accept the offer
             if (sum>=this.acceptance_value)
                 return;
 			
-			// In the last round can content with half minus one
+			// In the last round can be content with the last chance acceptance value
 			if (this.rounds == 0 && sum>=this.last_chance_acceptance_value && this.opponent_started)
 				return;
 			//-----------------------------------------------
@@ -146,7 +152,7 @@ module.exports = class Agent {
 			
 			// ----------------------------------------------
 			// If this is an offer - analyze the opponents offer
-			// First understand, which items opponent is keen of discarding.
+			// By logging which items opponent offered.
 			for (let i = 0; i<o.length; i++)
 			{
 				if (o[i] > 0)
@@ -166,7 +172,8 @@ module.exports = class Agent {
 		
 		
 		// ----------------------------------------------
-		// Get my previous offer
+		// Select an offer to start with
+		// If this is the first round - find the perfect offer
 		if (this.my_offers.length == 0)
 		{
 			o = this.counts.slice(); // Select everything at first
@@ -180,8 +187,7 @@ module.exports = class Agent {
 			}
 			this.perfect_offer = o;
 			
-			// If the perfect offer is the same as the count, add it to the offerred list to skip it.
-			// No real point of offering it.
+			// If the perfect offer is the same as the count, add it to the offerred list to skip it if acceptance level allows.
 			let same = 1;
 			for (let i = 0; i<this.perfect_offer.length; i++)
 			{
@@ -194,28 +200,33 @@ module.exports = class Agent {
 			if (same == 1)
 				this.my_offers.push([this.perfect_offer.slice(),this.gain(this.perfect_offer),this.opponent_gain(this.perfect_offer)])
 		}
+		// Otherwise select the perfect offer
 		else
-			o = this.perfect_offer; // Take a perfect offer
+			o = this.perfect_offer;
 		// ----------------------------------------------
 		
 		
 		
 		// ----------------------------------------------
+		// If this is not the last round, iterate my offers
 		if (this.rounds > 0)
 		{
-			// Iterate my offer
+			// 10 times was quite enough
 			for (let iterations = 0; iterations<10; iterations++)
 			{
+				// start from zero offers and go up
 				this.best_current_sum = 0;
 				this.search_offer_tree(o.slice());
 				
-				// Check the value
+				// Check the value and whether I offered it already
 				if ((this.gain(this.best_current_offer)>=this.acceptance_value)
 					&& !(this.offered_before(this.best_current_offer)))
 				{
 					o = this.best_current_offer;
 					break;
 				}
+				// If tree failed, go back to perfect offer
+				// and decrease acceptance level if parameters allow
 				else
 				{
 					o = this.perfect_offer;
@@ -225,6 +236,7 @@ module.exports = class Agent {
 			}
 		}
 		
+		// In case this is the last offer - check opponent offers
 		if (this.rounds == 0)
 		{
 			// Find the best of the opponents offers
@@ -240,12 +252,15 @@ module.exports = class Agent {
 			}
 		}
 		
+		// If the offer is the my history, select the last offer - usually the best value for the opponent
+		// just in case the opponent still could accept it.
 		if (this.offered_before(o))
 		{
 			o = this.my_offers[this.my_offers.length-1][0];
 		}
 			
 		this.log(`Offer: ${o} ${this.gain(o)} ${this.opponent_gain(o)}`);
+		// Log my offers
 		this.my_offers.push([o.slice(),this.gain(o),this.opponent_gain(o)])
         return o;
     }
@@ -269,6 +284,7 @@ module.exports = class Agent {
 		
 		// Calculate gain
 		let sum = this.gain(offer);
+		// Calculate opponents value contribution
 		let opponent_sum = this.opponent_gain(offer);
 
 	
@@ -294,6 +310,7 @@ module.exports = class Agent {
 	}
 	
 	// Check if this offer was made before
+	// Goes through my offer history
 	offered_before(o)
 	{
 		for (let i = 0; i<this.my_offers.length; i++)
@@ -317,6 +334,9 @@ module.exports = class Agent {
 		return variable == 0;
 	}
 	
+	// Not opponent gain, name stayed after I discarded that idea.
+	// Essentially increases the value items in my offer on the basis
+	// of whether the opponent offered this item.
 	opponent_gain(offer) {
 		let sum = 0;
 		for (let i = 0; i<offer.length; i++)
