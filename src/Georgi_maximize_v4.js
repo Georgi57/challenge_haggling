@@ -64,9 +64,17 @@ From here on it seems I only did tweaking and optimizations.
 I ran 24h test, comparing the my scripts with other people statistically.
 And decisions on the acceptance level were done based on the statistics.
 
-8. Final testing
+8. Final testing (I initially thought)
 Second test resulted in suprizing results of 8 being the best minimal acceptance level.
-...
+
+9. Final final testing
+After first submition I did not do anything for a day and then reaslized that I was not testing my solution on the best server.
+Most people were cheking it on standard_1s server. So I now I did the final round of testing.
+Understood that opponents offer selection acceptance value was too low. So the latest configuration:
+Initial acceptance: 10
+Minimal acceptance: 8
+Last chance acceptance: 7
+Last offer (when opponent start haggling): 1 (as long as there is gain at all)
 */
 
 'use strict'; /*jslint node:true*/

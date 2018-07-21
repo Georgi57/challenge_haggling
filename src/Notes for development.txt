@@ -17,6 +17,24 @@ node haggle.js --force --id=georgi.olentsenko@gmail.com35091835019
 // hash b4e5f0d39a5d51242f13c2e9a327293d
 node haggle.js --force --id=georgi.olentsenko@gmail.com235798273957
 // hash 61c8082ba70a89da82a929632e2a81a2
+node haggle.js --force --id=georgi.olentsenko@gmail.com99757923759
+// hash ba84741d4c44f9162c6c57fc5856f486
+node haggle.js --force --id=georgi.olentsenko@gmail.com57923759
+// hash 9f725de97872f0d65e7a1680a73d7791
+
+node haggle.js --force --id=georgi.olentsenko@gmail.com1059235993434
+// hash 5ecafe49994e5412c7288be61d127cab
+node haggle.js --force --id=georgi.olentsenko@gmail.com7923579493023580
+// hash b221a4a178665565d2f00a124ac1adf1
+node haggle.js --force --id=georgi.olentsenko@gmail.com14598426902450435
+// hash c674de2b3e82a07c490f6d85859243bf
+node haggle.js --force --id=georgi.olentsenko@gmail.com145984269024735253
+// hash 742df4fef107d8340bb06d16e3536a89
+node haggle.js --force --id=georgi.olentsenko@gmail.com0412088400218240 maximize_mid7.js wss://hola.org/challenges/haggling/arena/standard_1s
+// hash 6e11d7c9ba210f4e012b995350e79577
+
+
+
 
 
 
@@ -173,4 +191,112 @@ node haggle.js --force --id=georgi.olentsenko@gmail.com834634235 maximize_mid6.j
 node haggle.js --force --id=georgi.olentsenko@gmail.com23509259239058 maximize_min1.js wss://hola.org/challenges/haggling/arena/standard
 node haggle.js --force --id=georgi.olentsenko@gmail.com35091835019 maximize_min3.js wss://hola.org/challenges/haggling/arena/standard
 node haggle.js --force --id=georgi.olentsenko@gmail.com235798273957 maximize_min4.js wss://hola.org/challenges/haggling/arena/standard
+)
+
+
+
+
+My results:
+"5ecafe49994e5412c7288be61d127cab": { 12
+         50.0 356.0              7.12
+"f764dc3127e0e6d1f1c48562262eff97": { 12
+         336.0 2354.0            7.005952380952381
+"d60893281b1f7bd8e83ed0a0a26cf6dd": { 12
+         335.0 2368.0            7.068656716417911
+"220f9602116165ff6140914f902beaa3": { 12
+         335.0 2298.0            6.859701492537313
+"1d9174637927cad7285022a029e8be21": { 12
+         337.0 2328.0            6.908011869436201
+"b4e5f0d39a5d51242f13c2e9a327293d": { 12
+         333.0 2323.0            6.975975975975976
+"61c8082ba70a89da82a929632e2a81a2": { 12
+         330.0 2388.0            7.236363636363636
+"ba84741d4c44f9162c6c57fc5856f486": { 12
+         256.0 1874.0            7.3203125
+"9f725de97872f0d65e7a1680a73d7791": { 12
+         288.0 2149.0            7.461805555555555
+Now some best results overall today, 2018-07-19
+0 [8.001610738255033, 3725.0, 29806.0]
+1 [7.974852862493312, 3738.0, 29810.0]
+2 [7.860176991150443, 565.0, 4441.0]
+3 [7.677713178294574, 5160.0, 39617.0]
+4 [7.594569288389513, 1068.0, 8111.0]
+5 [7.547785547785548, 429.0, 3238.0]
+6 [7.461805555555555, 288.0, 2149.0]
+me
+7 [7.443054935238946, 2239.0, 16665.0]
+8 [7.366197183098592, 284.0, 2092.0]
+9 [7.3203125, 256.0, 1874.0]
+me
+10 [7.278337531486146, 794.0, 5779.0]
+11 [7.276078075351793, 22030.0, 160292.0]
+12 [7.2531727953140255, 3073.0, 22289.0]
+13 [7.236363636363636, 330.0, 2388.0]
+me
+14 [7.221311475409836, 1586.0, 11453.0]
+15 [7.218415417558886, 467.0, 3371.0]
+16 [7.192475940507436, 1143.0, 8221.0]
+17 [7.181852268466442, 2667.0, 19154.0]
+18 [7.177173110071411, 8122.0, 58293.0]
+19 [7.176732673267327, 8080.0, 57988.0]
+
+node haggle.js --force --id=georgi.olentsenko@gmail.com53278892375 maximize_def.js wss://hola.org/challenges/haggling/arena/standard_1s
+node haggle.js --force --id=georgi.olentsenko@gmail.com23509205203 maximize_mid8.js wss://hola.org/challenges/haggling/arena/standard_1s
+node haggle.js --force --id=georgi.olentsenko@gmail.com834634235 maximize_mid6.js wss://hola.org/challenges/haggling/arena/standard_1s
+node haggle.js --force --id=georgi.olentsenko@gmail.com23509259239058 maximize_min1.js wss://hola.org/challenges/haggling/arena/standard_1s
+node haggle.js --force --id=georgi.olentsenko@gmail.com35091835019 maximize_min3.js wss://hola.org/challenges/haggling/arena/standard_1s
+node haggle.js --force --id=georgi.olentsenko@gmail.com235798273957 maximize_min4.js wss://hola.org/challenges/haggling/arena/standard_1s
+node haggle.js --force --id=georgi.olentsenko@gmail.com99757923759 maximize_min5.js wss://hola.org/challenges/haggling/arena/standard_1s
+node haggle.js --force --id=georgi.olentsenko@gmail.com57923759 maximize_min6.js wss://hola.org/challenges/haggling/arena/standard_1s
+
+
+
+
+
+
+My results:
+"5ecafe49994e5412c7288be61d127cab": { 17
+         2306.0 18016.0                  7.8126626192541195
+"b221a4a178665565d2f00a124ac1adf1": { 17
+         2291.0 18006.0                  7.8594500218245305
+"c674de2b3e82a07c490f6d85859243bf": { 17
+         2295.0 18381.0                  8.009150326797386
+"742df4fef107d8340bb06d16e3536a89": { 17
+         2296.0 17910.0                  7.800522648083624
+"6e11d7c9ba210f4e012b995350e79577": { 17
+         2290.0 17052.0                  7.446288209606987
+Now some best results overall today, 2018-07-20
+0 [8.009150326797386, 2295.0, 18381.0]
+me
+1 [7.8594500218245305, 2291.0, 18006.0]
+me
+2 [7.8126626192541195, 2306.0, 18016.0]
+me
+3 [7.800522648083624, 2296.0, 17910.0]
+me
+4 [7.446288209606987, 2290.0, 17052.0]
+me
+5 [7.330722520461146, 11363.0, 83299.0]
+6 [7.314343755520226, 11322.0, 82813.0]
+7 [7.219275210084033, 11424.0, 82473.0]
+8 [7.082087595069499, 11439.0, 81012.0]
+9 [7.030799220272905, 12825.0, 90170.0]
+10 [7.022092115534739, 12810.0, 89953.0]
+11 [7.013235528623824, 12542.0, 87960.0]
+12 [7.009481316229783, 12551.0, 87976.0]
+13 [7.00672090555359, 8481.0, 59424.0]
+14 [6.999222757655837, 12866.0, 90052.0]
+15 [6.986022771888496, 12735.0, 88967.0]
+16 [6.980017240028211, 12761.0, 89072.0]
+17 [6.967205434527992, 12807.0, 89229.0]
+18 [6.96318539895484, 12821.0, 89275.0]
+19 [6.9566767418429825, 12903.0, 89762.0]
+
+
+for /l %%x in (1, 1, 100000) do (
+node haggle.js --force --id=georgi.olentsenko@gmail.com1059235993434 maximize.js wss://hola.org/challenges/haggling/arena/standard_1s
+node haggle.js --force --id=georgi.olentsenko@gmail.com7923579493023580 maximize_mid9.js wss://hola.org/challenges/haggling/arena/standard_1s
+node haggle.js --force --id=georgi.olentsenko@gmail.com14598426902450435 maximize_min7.js wss://hola.org/challenges/haggling/arena/standard_1s
+node haggle.js --force --id=georgi.olentsenko@gmail.com145984269024735253 maximize_mid9min8.js wss://hola.org/challenges/haggling/arena/standard_1s
+node haggle.js --force --id=georgi.olentsenko@gmail.com0412088400218240 maximize_mid7.js wss://hola.org/challenges/haggling/arena/standard_1s
 )
