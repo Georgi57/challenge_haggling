@@ -38,6 +38,17 @@ node haggle.js --force --id=georgi.olentsenko@gmail.com0412088400218240 maximize
 
 
 
+--------------------------------------------------------------------------
+// Script that was run
+for /l %%x in (1, 1, 2) do (
+node haggle.js --force --id=georgi.olentsenko@gmail.com53278892375 maximize_def.js wss://hola.org/challenges/haggling/arena/standard
+node haggle.js --force --id=georgi.olentsenko@gmail.com23509205203 maximize_min2.js wss://hola.org/challenges/haggling/arena/standard
+node haggle.js --force --id=georgi.olentsenko@gmail.com834634235 maximize_min3.js wss://hola.org/challenges/haggling/arena/standard
+node haggle.js --force --id=georgi.olentsenko@gmail.com23509259239058 maximize_mid5.js wss://hola.org/challenges/haggling/arena/standard
+node haggle.js --force --id=georgi.olentsenko@gmail.com235798273957 maximize_mid6.js wss://hola.org/challenges/haggling/arena/standard
+node haggle.js --force --id=georgi.olentsenko@gmail.com35091835019 maximize_max10.js wss://hola.org/challenges/haggling/arena/standard
+)
+
 Heattables for the 24h test
 My results:
 "f764dc3127e0e6d1f1c48562262eff97": {
@@ -78,18 +89,22 @@ me
 17 [6.681578947368421, 1900.0, 12695.0]
 18 [6.679456706281834, 2945.0, 19671.0]
 19 [6.617585484996511, 1433.0, 9483.0]
+--------------------------------------------------------------------------
 
-// Script that was run
-for /l %%x in (1, 1, 2) do (
+
+
+
+
+--------------------------------------------------------------------------
+Script:
+for /l %%x in (1, 1, 100000) do (
 node haggle.js --force --id=georgi.olentsenko@gmail.com53278892375 maximize_def.js wss://hola.org/challenges/haggling/arena/standard
-node haggle.js --force --id=georgi.olentsenko@gmail.com23509205203 maximize_min2.js wss://hola.org/challenges/haggling/arena/standard
-node haggle.js --force --id=georgi.olentsenko@gmail.com834634235 maximize_min3.js wss://hola.org/challenges/haggling/arena/standard
-node haggle.js --force --id=georgi.olentsenko@gmail.com23509259239058 maximize_mid5.js wss://hola.org/challenges/haggling/arena/standard
-node haggle.js --force --id=georgi.olentsenko@gmail.com235798273957 maximize_mid6.js wss://hola.org/challenges/haggling/arena/standard
-node haggle.js --force --id=georgi.olentsenko@gmail.com35091835019 maximize_max10.js wss://hola.org/challenges/haggling/arena/standard
+node haggle.js --force --id=georgi.olentsenko@gmail.com23509205203 maximize_mid5.js wss://hola.org/challenges/haggling/arena/standard
+node haggle.js --force --id=georgi.olentsenko@gmail.com834634235 maximize_mid7.js wss://hola.org/challenges/haggling/arena/standard
+node haggle.js --force --id=georgi.olentsenko@gmail.com23509259239058 maximize_mid8.js wss://hola.org/challenges/haggling/arena/standard
+node haggle.js --force --id=georgi.olentsenko@gmail.com35091835019 maximize_max9.js wss://hola.org/challenges/haggling/arena/standard
+node haggle.js --force --id=georgi.olentsenko@gmail.com235798273957 maximize_opof.js wss://hola.org/challenges/haggling/arena/standard
 )
-
-
 
 Second 24h test
 My results:
@@ -132,16 +147,22 @@ me
 17 [6.30307732092061, 3867.0, 24374.0]
 18 [6.296137339055794, 233.0, 1467.0]
 19 [6.292231812577065, 1622.0, 10206.0]
+--------------------------------------------------------------------------
 
+
+
+
+
+--------------------------------------------------------------------------
+Script:
 for /l %%x in (1, 1, 100000) do (
 node haggle.js --force --id=georgi.olentsenko@gmail.com53278892375 maximize_def.js wss://hola.org/challenges/haggling/arena/standard
-node haggle.js --force --id=georgi.olentsenko@gmail.com23509205203 maximize_mid5.js wss://hola.org/challenges/haggling/arena/standard
-node haggle.js --force --id=georgi.olentsenko@gmail.com834634235 maximize_mid7.js wss://hola.org/challenges/haggling/arena/standard
-node haggle.js --force --id=georgi.olentsenko@gmail.com23509259239058 maximize_mid8.js wss://hola.org/challenges/haggling/arena/standard
-node haggle.js --force --id=georgi.olentsenko@gmail.com35091835019 maximize_max9.js wss://hola.org/challenges/haggling/arena/standard
-node haggle.js --force --id=georgi.olentsenko@gmail.com235798273957 maximize_opof.js wss://hola.org/challenges/haggling/arena/standard
+node haggle.js --force --id=georgi.olentsenko@gmail.com23509205203 maximize_mid7.js wss://hola.org/challenges/haggling/arena/standard
+node haggle.js --force --id=georgi.olentsenko@gmail.com834634235 maximize_mid6.js wss://hola.org/challenges/haggling/arena/standard
+node haggle.js --force --id=georgi.olentsenko@gmail.com23509259239058 maximize_min1.js wss://hola.org/challenges/haggling/arena/standard
+node haggle.js --force --id=georgi.olentsenko@gmail.com35091835019 maximize_min3.js wss://hola.org/challenges/haggling/arena/standard
+node haggle.js --force --id=georgi.olentsenko@gmail.com235798273957 maximize_min4.js wss://hola.org/challenges/haggling/arena/standard
 )
-
 
 Last 24h test
 My results:
@@ -182,19 +203,23 @@ me
 18 [6.62865671641791, 13400.0, 88824.0]
 19 [6.61896551724138, 5220.0, 34551.0]
 me
-
-
-for /l %%x in (1, 1, 100000) do (
-node haggle.js --force --id=georgi.olentsenko@gmail.com53278892375 maximize_def.js wss://hola.org/challenges/haggling/arena/standard
-node haggle.js --force --id=georgi.olentsenko@gmail.com23509205203 maximize_mid7.js wss://hola.org/challenges/haggling/arena/standard
-node haggle.js --force --id=georgi.olentsenko@gmail.com834634235 maximize_mid6.js wss://hola.org/challenges/haggling/arena/standard
-node haggle.js --force --id=georgi.olentsenko@gmail.com23509259239058 maximize_min1.js wss://hola.org/challenges/haggling/arena/standard
-node haggle.js --force --id=georgi.olentsenko@gmail.com35091835019 maximize_min3.js wss://hola.org/challenges/haggling/arena/standard
-node haggle.js --force --id=georgi.olentsenko@gmail.com235798273957 maximize_min4.js wss://hola.org/challenges/haggling/arena/standard
-)
+--------------------------------------------------------------------------
 
 
 
+
+
+
+--------------------------------------------------------------------------
+Script:
+node haggle.js --force --id=georgi.olentsenko@gmail.com53278892375 maximize_def.js wss://hola.org/challenges/haggling/arena/standard_1s
+node haggle.js --force --id=georgi.olentsenko@gmail.com23509205203 maximize_mid8.js wss://hola.org/challenges/haggling/arena/standard_1s
+node haggle.js --force --id=georgi.olentsenko@gmail.com834634235 maximize_mid6.js wss://hola.org/challenges/haggling/arena/standard_1s
+node haggle.js --force --id=georgi.olentsenko@gmail.com23509259239058 maximize_min1.js wss://hola.org/challenges/haggling/arena/standard_1s
+node haggle.js --force --id=georgi.olentsenko@gmail.com35091835019 maximize_min3.js wss://hola.org/challenges/haggling/arena/standard_1s
+node haggle.js --force --id=georgi.olentsenko@gmail.com235798273957 maximize_min4.js wss://hola.org/challenges/haggling/arena/standard_1s
+node haggle.js --force --id=georgi.olentsenko@gmail.com99757923759 maximize_min5.js wss://hola.org/challenges/haggling/arena/standard_1s
+node haggle.js --force --id=georgi.olentsenko@gmail.com57923759 maximize_min6.js wss://hola.org/challenges/haggling/arena/standard_1s
 
 My results:
 "5ecafe49994e5412c7288be61d127cab": { 12
@@ -239,20 +264,21 @@ me
 17 [7.181852268466442, 2667.0, 19154.0]
 18 [7.177173110071411, 8122.0, 58293.0]
 19 [7.176732673267327, 8080.0, 57988.0]
-
-node haggle.js --force --id=georgi.olentsenko@gmail.com53278892375 maximize_def.js wss://hola.org/challenges/haggling/arena/standard_1s
-node haggle.js --force --id=georgi.olentsenko@gmail.com23509205203 maximize_mid8.js wss://hola.org/challenges/haggling/arena/standard_1s
-node haggle.js --force --id=georgi.olentsenko@gmail.com834634235 maximize_mid6.js wss://hola.org/challenges/haggling/arena/standard_1s
-node haggle.js --force --id=georgi.olentsenko@gmail.com23509259239058 maximize_min1.js wss://hola.org/challenges/haggling/arena/standard_1s
-node haggle.js --force --id=georgi.olentsenko@gmail.com35091835019 maximize_min3.js wss://hola.org/challenges/haggling/arena/standard_1s
-node haggle.js --force --id=georgi.olentsenko@gmail.com235798273957 maximize_min4.js wss://hola.org/challenges/haggling/arena/standard_1s
-node haggle.js --force --id=georgi.olentsenko@gmail.com99757923759 maximize_min5.js wss://hola.org/challenges/haggling/arena/standard_1s
-node haggle.js --force --id=georgi.olentsenko@gmail.com57923759 maximize_min6.js wss://hola.org/challenges/haggling/arena/standard_1s
+--------------------------------------------------------------------------
 
 
 
 
 
+--------------------------------------------------------------------------
+Script:
+for /l %%x in (1, 1, 100000) do (
+node haggle.js --force --id=georgi.olentsenko@gmail.com1059235993434 maximize.js wss://hola.org/challenges/haggling/arena/standard_1s
+node haggle.js --force --id=georgi.olentsenko@gmail.com7923579493023580 maximize_mid9.js wss://hola.org/challenges/haggling/arena/standard_1s
+node haggle.js --force --id=georgi.olentsenko@gmail.com14598426902450435 maximize_min7.js wss://hola.org/challenges/haggling/arena/standard_1s
+node haggle.js --force --id=georgi.olentsenko@gmail.com145984269024735253 maximize_mid9min8.js wss://hola.org/challenges/haggling/arena/standard_1s
+node haggle.js --force --id=georgi.olentsenko@gmail.com0412088400218240 maximize_mid7.js wss://hola.org/challenges/haggling/arena/standard_1s
+)
 
 My results:
 "5ecafe49994e5412c7288be61d127cab": { 17
@@ -291,12 +317,4 @@ me
 17 [6.967205434527992, 12807.0, 89229.0]
 18 [6.96318539895484, 12821.0, 89275.0]
 19 [6.9566767418429825, 12903.0, 89762.0]
-
-
-for /l %%x in (1, 1, 100000) do (
-node haggle.js --force --id=georgi.olentsenko@gmail.com1059235993434 maximize.js wss://hola.org/challenges/haggling/arena/standard_1s
-node haggle.js --force --id=georgi.olentsenko@gmail.com7923579493023580 maximize_mid9.js wss://hola.org/challenges/haggling/arena/standard_1s
-node haggle.js --force --id=georgi.olentsenko@gmail.com14598426902450435 maximize_min7.js wss://hola.org/challenges/haggling/arena/standard_1s
-node haggle.js --force --id=georgi.olentsenko@gmail.com145984269024735253 maximize_mid9min8.js wss://hola.org/challenges/haggling/arena/standard_1s
-node haggle.js --force --id=georgi.olentsenko@gmail.com0412088400218240 maximize_mid7.js wss://hola.org/challenges/haggling/arena/standard_1s
-)
+--------------------------------------------------------------------------
